@@ -36,7 +36,7 @@ This service will be used maily for checkout, payment collection, order processi
 ## Contributing
 
 This project has been started while keeping beginners in focus. You will receive a detailed blog each time on the progress of the project and how it is going. Blogs will be much detailed on how and what are the changes made. It would be beginner-friendly, keeping in mind learning open-source and enterprise-level software development.
-- [contributing.md](contributing.md)
+- [contributing.md](Contributing.md)
 - Contribute to Other Services:-
   - [NoMise Frontent](https://github.com/AlphaDecodeX/NoMise_Store)
   - [Inventory Service](https://github.com/AlphaDecodeX/nomise_inventory)
