@@ -17,7 +17,7 @@ type Configuration struct {
 	} `yaml:"database"`
 }
 
-func configureRagnarok() error {
+func ConfigureRagnarok() error {
 	data, err := ioutil.ReadFile("../config.yaml")
 	if err != nil {
 		return err
