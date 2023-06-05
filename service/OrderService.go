@@ -1,10 +1,14 @@
 package service
 
-import "github.com/alphadecodex/nomise-ragnarok/entity"
+import (
+	"github.com/alphadecodex/nomise-ragnarok/entity"
+	"github.com/alphadecodex/nomise-ragnarok/repository"
+)
 
-type OrderService struct{}
+type OrderService struct {
+	OrderRepository *repository.OrderRepository
+}
 
-
-func (s *OrderService) createOrUpdateOrder(entity.Order) entity.Order {
-	
+func (orderService *OrderService) CreateOrUpdateOrder(order *entity.Order) error {
+	return orderService.OrderRepository.CreateOrder(order)
 }

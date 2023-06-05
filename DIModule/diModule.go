@@ -6,6 +6,7 @@ import (
 
 	"github.com/alphadecodex/nomise-ragnarok/configuration"
 	"github.com/alphadecodex/nomise-ragnarok/repository"
+	"github.com/alphadecodex/nomise-ragnarok/service"
 	"go.uber.org/dig"
 )
 
@@ -41,6 +42,10 @@ func (m *DIModule) BuildContainer() *dig.Container {
 
 	container.Provide(func(db *sql.DB) *repository.OrderRepository {
 		return &repository.OrderRepository{Db: db}
+	})
+
+	container.Provide(func(OrderRepository *repository.OrderRepository) *service.OrderService {
+		return &service.OrderService{OrderRepository: OrderRepository}
 	})
 
 	return container
