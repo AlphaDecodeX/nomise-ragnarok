@@ -18,7 +18,7 @@ type Configuration struct {
 }
 
 func ConfigureRagnarok() error {
-	data, err := ioutil.ReadFile("../config.yaml")
+	data, err := ioutil.ReadFile("/Users/lovepreetsingh/Desktop/Side/nomise-ragnarok/config.yaml")
 	if err != nil {
 		return err
 	}

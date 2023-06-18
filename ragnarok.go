@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"net/http"
 
 	dimodule "github.com/alphadecodex/nomise-ragnarok/dimodule"
@@ -11,8 +12,8 @@ import (
 func main() {
 	diModule := &dimodule.DIModule{}
 	container := diModule.BuildContainer()
-
 	err := container.Invoke(func(orderResource *resources.OrderResource) {
+		fmt.Println("Inside container.Invoke()")
 		router := gin.Default()
 		router.POST("/orders", func(ctx *gin.Context) {
 			var orderRequest resources.OrderRequest
@@ -31,11 +32,17 @@ func main() {
 			ctx.JSON(http.StatusOK, gin.H{"message": "Order created successfully"})
 		})
 
-		// Start the server
-		router.Run(":8080")
+		// Start the server in a separate goroutine
+		go func() {
+			if err := router.Run(":8080"); err != nil {
+				// Handle the error
+				fmt.Println("Server error:", err)
+			}
+		}()
 	})
 
 	if err != nil {
 		// Handle the error
+		fmt.Println("Invoke error:", err)
 	}
 }
