@@ -14,20 +14,23 @@ type OrderResource struct {
 	OrderService *service.OrderService
 }
 
-func NewOrderResource(orderService *service.orderService) *OrderResource{
+func NewOrderResource(orderService *service.OrderService) *OrderResource {
 	return &OrderResource{
-		OrderService: orderService
-	} 
+		OrderService: orderService,
+	}
 }
 
 func (OrderResource *OrderResource) CreateOrder(ctx *gin.Context) error {
 	var request OrderRequest
 	err := ctx.ShouldBindJSON(&request)
-	i err!=nil{
+	if err != nil {
 		return err
-	}	
-	err := OrderResource.OrderService.CreateOrUpdateOrder(&request.Order)
-	return err
-
+	}
+	err = OrderResource.OrderService.CreateOrUpdateOrder(&request.order)
+	if err != nil {
+		// Handle the error
+		return err
+	}
+	return nil
 
 }
